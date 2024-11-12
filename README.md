@@ -14,7 +14,7 @@ Welcome to the Car Management System, a simple yet effective console-based appli
 - **User-friendly Interface:** Easy-to-follow prompts for input and operation selection.
 - **Looped Operation:** Allows users to perform multiple actions without restarting the program.
 
-## How to Use
+
 
 1. **Start the Program:** Run the script to start the Car Management System.
 2. **Input Your Name:** Enter your name when prompted.
