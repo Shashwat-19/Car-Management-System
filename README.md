@@ -40,7 +40,7 @@ python car_management_system.py
 
 ## 🔒 License
 
-This project is licensed under the MIT License. See the LICENSE file for details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ---
 
@@ -48,7 +48,7 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 **Shashwat**  
 BCA (Hons), Christ University, Bangalore  
-[GitHub](https://github.com/Shashwat-19) | [LinkedIn](#) | [Email Me](#)  
+[GitHub](https://github.com/Shashwat-19) | [LinkedIn](https://www.linkedin.com/in/shashwat19) | [Email Me](mailto:shashwat@example.com)  
 
 ---
 
