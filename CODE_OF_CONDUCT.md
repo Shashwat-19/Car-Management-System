@@ -2,7 +2,7 @@
 
 ## Our Pledge
 
-We, as members, contributors, and leaders of the **SmartCar-Care** project, pledge to create a respectful, harassment-free, and professional environment for all participants. We are committed to fostering an open, welcoming, and inclusive space that encourages collaboration and innovation in vehicle service management.
+We, as members, contributors, and leaders of the **Car-Management-System** project, pledge to create a respectful, harassment-free, and professional environment for all participants. We are committed to fostering an open, welcoming, and inclusive space that encourages collaboration and innovation in vehicle service management.
 
 We pledge to act in ways that contribute to a positive and constructive community, regardless of factors such as age, ability, ethnicity, gender identity and expression, level of experience, nationality, personal appearance, race, religion, or sexual orientation.
 
@@ -26,7 +26,7 @@ Examples of unacceptable behavior include:
 
 ## Enforcement Responsibilities
 
-Project maintainers are responsible for defining and enforcing appropriate behavior within the **SmartCar-Care** project. They have the right to remove or edit any comments, commits, issues, or contributions that violate this Code of Conduct.
+Project maintainers are responsible for defining and enforcing appropriate behavior within the **Car-Management-System** project. They have the right to remove or edit any comments, commits, issues, or contributions that violate this Code of Conduct.
 
 Maintainers may also take corrective action, including warnings, temporary suspensions, or permanent bans, in response to violations.
 
@@ -36,9 +36,9 @@ This Code of Conduct applies to all project spaces, including but not limited to
 
 - GitHub repositories
 - Project discussions and communication channels
-- Events, meetings, and SmartCar-Care-related public interactions
+- Events, meetings, and Car-Management-System-related public interactions
 
-This Code also applies whenever an individual represents the **SmartCar-Care** project in public.
+This Code also applies whenever an individual represents the **Car-Management-System** project in public.
 
 ## Reporting and Enforcement
 
