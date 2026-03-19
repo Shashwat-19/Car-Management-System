@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="SmartCar-Care — Modern car service management system with service booking, vehicle tracking, and service history." />
+    <title>SmartCar-Care</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/src/styles/index.css" />
+  </head>
+  <body>
+    <!-- Toast container -->
+    <div id="toast-container"></div>
+
+    <!-- App shell -->
+    <div id="app">
+      <!-- Sidebar -->
+      <aside id="sidebar" class="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-icon">🚗</div>
+          <span class="brand-text">SmartCar-Care</span>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="#dashboard" class="nav-link active" data-page="dashboard">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Dashboard</span>
+          </a>
+          <a href="#cars" class="nav-link" data-page="cars">
+            <span class="nav-icon">🚘</span>
+            <span class="nav-label">My Cars</span>
+          </a>
+          <a href="#services" class="nav-link" data-page="services">
+            <span class="nav-icon">🔧</span>
+            <span class="nav-label">Services</span>
+          </a>
+          <a href="#history" class="nav-link" data-page="history">
+            <span class="nav-icon">📋</span>
+            <span class="nav-label">History</span>
+          </a>
+        </nav>
+        <div class="sidebar-footer">
+          <div class="user-info" id="user-info">
+            <div class="user-avatar" id="user-avatar">U</div>
+            <span class="user-name" id="user-name">User</span>
+          </div>
+          <button class="btn-logout" id="btn-logout">Sign Out</button>
+        </div>
+      </aside>
+
+      <!-- Main content area -->
+      <main id="main-content" class="main-content">
+        <!-- Dynamically rendered pages go here -->
+      </main>
+    </div>
+
+    <!-- Auth overlay (shown when not logged in) -->
+    <div id="auth-overlay" class="auth-overlay">
+      <div class="auth-card glass">
+        <div class="auth-brand">
+          <div class="auth-brand-icon">🚗</div>
+          <h1>SmartCar-Care</h1>
+          <p class="auth-subtitle">Modern car service management</p>
+        </div>
+
+        <!-- Login form -->
+        <form id="login-form" class="auth-form">
+          <h2>Welcome Back</h2>
+          <div class="form-group">
+            <label for="login-email">Email</label>
+            <input type="email" id="login-email" placeholder="you@example.com" required />
+          </div>
+          <div class="form-group">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" placeholder="••••••••" required />
+          </div>
+          <button type="submit" class="btn btn-primary btn-full" id="login-btn">Sign In</button>
+          <p class="auth-switch">Don't have an account? <a href="#" id="show-register">Create one</a></p>
+        </form>
+
+        <!-- Register form -->
+        <form id="register-form" class="auth-form" style="display:none;">
+          <h2>Create Account</h2>
+          <div class="form-group">
+            <label for="register-name">Full Name</label>
+            <input type="text" id="register-name" placeholder="John Doe" required />
+          </div>
+          <div class="form-group">
+            <label for="register-email">Email</label>
+            <input type="email" id="register-email" placeholder="you@example.com" required />
+          </div>
+          <div class="form-group">
+            <label for="register-password">Password</label>
+            <input type="password" id="register-password" placeholder="Min 6 characters" required minlength="6" />
+          </div>
+          <button type="submit" class="btn btn-primary btn-full" id="register-btn">Create Account</button>
+          <p class="auth-switch">Already have an account? <a href="#" id="show-login">Sign in</a></p>
+        </form>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
