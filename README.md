@@ -1,56 +1,110 @@
-# Car Service Management System 🚗💼
+<div align="center">
+  <img src="frontend/public/hero-dashboard.png" alt="Car Management System Dashboard" width="600" />
+  <h1>Car Management System</h1>
+  <p><strong>A Modern, Full-Stack Vehicle & Service Management Platform</strong></p>
+</div>
 
-Welcome to **Car Service Management System** – a **comprehensive car service management solution** built in Python! This project simplifies car servicing by managing service scheduling, customer data, and vehicle details efficiently.
+<br />
 
----
+The **Car Management System** is a professional, elegantly-designed web application built to streamline vehicle tracking, fleet management, and service scheduling. Originally a Python CLI tool, the project has been completely overhauled into a modern SPA (Single Page Application) with a robust Python backend and a SaaS-grade frontend.
 
-## ✨ Features
+## ✨ Key Features
 
-🔹 **Car Registration** – Easily register and store car details.  
-🔹 **Service Management** – Schedule services like car washes, painting, and maintenance.  
-🔹 **Customer Management** – Keep track of customer records and vehicles.  
-🔹 **Service History** – View a detailed history of past services availed by the car.  
-🔹 **Looped Operation** – Perform multiple actions without restarting the program.  
-🔹 **User-Friendly Interface** – Simple and interactive command-line experience.
+- **Dashboard Operations**: View fleet metrics, total registered vehicles, recent service history, and quick-action shortcuts from a single comprehensive view.
+- **Vehicle Directory**: Register new cars, track ownership details, and delete inactive vehicles with a polished UI.
+- **Service Booking**: Schedule maintenance, oil changes, detailing, and paint jobs with interactive cards and custom notes.
+- **Maintenance History**: Access detailed, tabular service logs with associated costs and service badge indicators.
+- **Split-Screen Authentication**: Secure login flow with Firebase Auth, featuring a beautiful UI and a fallback "Dev Mode" for instant local access.
 
----
+## 🛠️ Technology Stack
 
-## 🛠️ Installation Guide
+| Layer | Technologies |
+| --- | --- |
+| **Frontend** | Vanilla JS (ES Modules), Vite, CSS (Custom Design System styling), Plus Jakarta Sans font |
+| **Backend** | Python 3, FastAPI, Uvicorn |
+| **Database** | SQLite, SQLAlchemy ORM |
+| **Auth** | Firebase Admin SDK (with local dev toggle) |
+| **Infrastructure**| Docker, Docker Compose |
 
-### Clone the Repository:
+## 🚀 Quick Start (Docker)
+
+The fastest and easiest way to run the entire stack (Frontend + Backend + DB) is using Docker.
+
 ```bash
-git clone https://github.com/Shashwat-19/Car-Service-Management-System.git
-cd Car-Service-Management-System
+# 1. Clone the repository
+git clone https://github.com/Shashwat-19/Car-Management-System.git
+cd Car-Management-System
+
+# 2. Build and start the container
+docker compose up --build -d
+```
+Open **http://localhost:8000** in your browser. 
+*(If you haven't configured Firebase yet, click the **"Enter Demo Mode"** button to jump straight into the app).*
+
+## 💻 Local Development Setup
+
+If you want to run the frontend and backend separately for development:
+
+### 1. Backend Setup (Port 8000)
+```bash
+cd backend
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run FastAPI server
+python3 -m uvicorn main:app --reload --port 8000
 ```
 
-### Run the Program:
+### 2. Frontend Setup (Port 5173)
 ```bash
-python car_management_system.py
+# Open a new terminal tab
+cd frontend
+
+# Install dependencies
+npm install
+
+# Run Vite dev server
+npm run dev
+```
+Open **http://localhost:5173** in your browser.
+
+## 🔐 Authentication Config (Production)
+
+To enable real authentication via Firebase:
+1. Create a project in the [Firebase Console](https://console.firebase.google.com/).
+2. Enable Email/Password authentication.
+3. Update `frontend/src/firebase.js` with your Web App configuration.
+4. Download your Firebase Admin SDK JSON key, place it securely on your server, and set the environment variable:
+   ```bash
+   export FIREBASE_SERVICE_ACCOUNT="/path/to/firebase-adminsdk.json"
+   ```
+
+## 📂 Project Structure
+
+```text
+Car-Management-System/
+├── backend/
+│   ├── main.py              # FastAPI entry point
+│   ├── database.py          # SQLAlchemy SQLite connection
+│   ├── models/              # DB schemas (Cars, Services)
+│   ├── routes/              # API endpoints
+│   └── requirements.txt     # Python dependencies
+├── frontend/
+│   ├── index.html           # Main SPA HTML
+│   ├── public/              # Static images (heroes)
+│   ├── src/
+│   │   ├── api.js           # Fetch wrappers
+│   │   ├── main.js          # Routing & Auth Logic
+│   │   ├── styles/          # Vanilla CSS Design System
+│   │   └── pages/           # Dashboard, Cars, Services modules
+│   └── package.json         # Node scripts & Vite dep
+├── docker-compose.yml       # One-click deployment
+└── Dockerfile               # Multi-stage build process
 ```
 
----
+## 🤝 Contributing
+Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
 
-## 📚 Tech Stack
-
-🖥 **Programming Language** – Python 🐍  
-🗄 **Data Handling** – Uses in-memory collections (Dictionaries, Lists)  
-📟 **Interface** – Command-Line Interactive System  
-
----
-
-## 🔒 License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
----
-
-## 📩 Contact
-
-**Shashwat**  
-BCA (Hons), Christ University, Bangalore  
-[GitHub](https://github.com/Shashwat-19) | [LinkedIn](https://www.linkedin.com/in/shashwat19) | [Email Me](mailto:shashwat@example.com)  
-
----
-
-Thank you for checking out **Car Service Management System**! 🚘
-
+## 📄 License
+This project is open-source and available under the terms of the MIT License.
