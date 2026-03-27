@@ -1,22 +1,19 @@
-# Ignore compiled class files
-*.class
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
 
-# Ignore IDE project files
-.idea/
+# Database
+*.db
+
+# Environment
+.env
+*.env
+
+# IDE
 .vscode/
-*.iml
+.idea/
 
-# Ignore log files
-*.log
-
-# Ignore temporary system files (macOS, Windows, Linux)
-.DS_Store
-Thumbs.db
-
-# Ignore build directory (if any)
-build/
-
-# Ignore any specific folders or files you don't want to track
-# (e.g., sensitive configuration files)
-config/
-*.properties
+# Build
+dist/
+frontend/public/hero-*.png

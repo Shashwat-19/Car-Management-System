@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════════════════════════════════
-// SmartCar-Care — Main SPA Entry Point
+// SmartCar-Care · Main SPA Entry Point v2
 // ═══════════════════════════════════════════════════════════════════════════
 
 import { onAuth, signIn, signUp, signOut, isConfigured } from "./firebase.js";
@@ -8,7 +8,7 @@ import { renderCars } from "./pages/cars.js";
 import { renderServices } from "./pages/services.js";
 import { renderHistory } from "./pages/history.js";
 
-// ─── DOM refs ────────────────────────────────────────────────────────────
+// ─── DOM Refs ────────────────────────────────────────────────────────────
 const appEl = document.getElementById("app");
 const authOverlay = document.getElementById("auth-overlay");
 const mainContent = document.getElementById("main-content");
@@ -17,7 +17,7 @@ const registerForm = document.getElementById("register-form");
 const showRegisterLink = document.getElementById("show-register");
 const showLoginLink = document.getElementById("show-login");
 
-// ─── Toast helper ────────────────────────────────────────────────────────
+// ─── Toast System ────────────────────────────────────────────────────────
 export function showToast(message, type = "info") {
   const container = document.getElementById("toast-container");
   const toast = document.createElement("div");
@@ -30,7 +30,7 @@ export function showToast(message, type = "info") {
   }, 3500);
 }
 
-// ─── Navigation ──────────────────────────────────────────────────────────
+// ─── SPA Router ──────────────────────────────────────────────────────────
 const pages = {
   dashboard: renderDashboard,
   cars: renderCars,
@@ -50,7 +50,7 @@ export function navigateTo(page) {
     link.classList.toggle("active", link.dataset.page === page);
   });
 
-  // Render page
+  // Render with loading state
   mainContent.innerHTML = '<div class="spinner"></div>';
   pages[page](mainContent);
 }
@@ -58,10 +58,10 @@ export function navigateTo(page) {
 // Hash routing
 window.addEventListener("hashchange", () => {
   const page = window.location.hash.replace("#", "") || "dashboard";
-  navigateTo(page);
+  if (page !== currentPage) navigateTo(page);
 });
 
-// Sidebar link clicks
+// Nav clicks
 document.querySelectorAll(".nav-link").forEach((link) => {
   link.addEventListener("click", (e) => {
     e.preventDefault();
@@ -87,12 +87,10 @@ function enterApp(user) {
   authOverlay.classList.add("hidden");
   appEl.classList.add("authenticated");
 
-  // Update sidebar
   const name = user.displayName || user.email || "User";
   document.getElementById("user-name").textContent = name;
   document.getElementById("user-avatar").textContent = name.charAt(0).toUpperCase();
 
-  // Navigate to current hash or dashboard
   const page = window.location.hash.replace("#", "") || "dashboard";
   navigateTo(page);
 }
@@ -103,56 +101,56 @@ function exitApp() {
   mainContent.innerHTML = "";
 }
 
-// Sign-out button
+// Sign out
 document.getElementById("btn-logout").addEventListener("click", async () => {
   await signOut();
   exitApp();
-  showToast("Signed out", "info");
+  showToast("Signed out successfully", "info");
 });
 
-// ─── Dev-mode auto-login (when Firebase is not configured) ───────────────
+// ─── Dev Mode ────────────────────────────────────────────────────────────
 if (!isConfigured) {
-  // Show a dev-mode notice + auto-login button in login form
   const notice = document.createElement("div");
-  notice.style.cssText =
-    "background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.3);border-radius:8px;padding:14px;margin-bottom:20px;font-size:0.85rem;color:#fbbf24;text-align:center;";
-  notice.innerHTML =
-    '<strong>Dev Mode</strong><br>Firebase is not configured. Click below to enter as a demo user.';
+  notice.style.cssText = `
+    background:#fffaeb;border:1px solid #fec84b;border-radius:8px;
+    padding:12px 16px;margin-bottom:20px;font-size:.825rem;
+    color:#93370d;text-align:center;line-height:1.5;
+  `;
+  notice.innerHTML = '<strong style="display:block;margin-bottom:2px">Development Mode</strong>Firebase is not configured. Use the button below to enter as a demo user.';
   loginForm.prepend(notice);
 
   const devBtn = document.createElement("button");
   devBtn.type = "button";
   devBtn.className = "btn btn-secondary btn-full";
   devBtn.style.marginTop = "10px";
-  devBtn.textContent = "Enter Dev Mode 🔓";
+  devBtn.innerHTML = `
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1v6m0 0l2.5-2.5M8 7L5.5 4.5M2 10v2a2 2 0 002 2h8a2 2 0 002-2v-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span>Enter Demo Mode</span>
+  `;
   devBtn.addEventListener("click", () => {
     enterApp({ displayName: "Developer", email: "dev@smartcar.local", uid: "dev-user" });
-    showToast("Welcome to Dev Mode! 🔓", "info");
+    showToast("Welcome! You're in demo mode", "info");
   });
   loginForm.appendChild(devBtn);
 
-  // Also listen for programmatic dev-logout
   window.addEventListener("dev-logout", () => exitApp());
 }
 
-// ─── Firebase auth state listener ───────────────────────────────────────
+// ─── Firebase Auth Listener ──────────────────────────────────────────────
 if (isConfigured) {
   onAuth((user) => {
-    if (user) {
-      enterApp(user);
-    } else {
-      exitApp();
-    }
+    if (user) enterApp(user);
+    else exitApp();
   });
 }
 
-// ─── Login form submit ──────────────────────────────────────────────────
+// ─── Login Submit ────────────────────────────────────────────────────────
 loginForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   if (!isConfigured) return;
   const btn = document.getElementById("login-btn");
   btn.disabled = true;
-  btn.textContent = "Signing in…";
+  btn.querySelector("span").textContent = "Signing in…";
   try {
     await signIn(
       document.getElementById("login-email").value.trim(),
@@ -161,27 +159,27 @@ loginForm.addEventListener("submit", async (e) => {
   } catch (err) {
     showToast(err.message, "error");
     btn.disabled = false;
-    btn.textContent = "Sign In";
+    btn.querySelector("span").textContent = "Sign In";
   }
 });
 
-// ─── Register form submit ───────────────────────────────────────────────
+// ─── Register Submit ─────────────────────────────────────────────────────
 registerForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   if (!isConfigured) return;
   const btn = document.getElementById("register-btn");
   btn.disabled = true;
-  btn.textContent = "Creating account…";
+  btn.querySelector("span").textContent = "Creating account…";
   try {
     await signUp(
       document.getElementById("register-email").value.trim(),
       document.getElementById("register-password").value,
       document.getElementById("register-name").value.trim()
     );
-    showToast("Account created! Welcome 🎉", "success");
+    showToast("Account created successfully! 🎉", "success");
   } catch (err) {
     showToast(err.message, "error");
     btn.disabled = false;
-    btn.textContent = "Create Account";
+    btn.querySelector("span").textContent = "Create Account";
   }
 });
