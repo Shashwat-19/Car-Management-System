@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════════════════════════════════
-// SmartCar-Care · Main SPA Entry Point v2
+// Car Management System · Main SPA Entry Point
 // ═══════════════════════════════════════════════════════════════════════════
 
 import { onAuth, signIn, signUp, signOut, isConfigured } from "./firebase.js";

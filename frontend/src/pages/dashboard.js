@@ -10,7 +10,7 @@ export async function renderDashboard(container) {
     <!-- Hero Banner -->
     <div class="hero-banner">
       <div class="hero-text">
-        <h2>Welcome to SmartCar-Care</h2>
+        <h2>Welcome to Car Management System</h2>
         <p>Your complete vehicle management dashboard. Track your fleet, schedule services, and keep everything running smoothly.</p>
       </div>
       <img src="/hero-service.png" alt="Car Service" class="hero-img" />
